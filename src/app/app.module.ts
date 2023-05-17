@@ -13,7 +13,9 @@ import { EditarComponent } from './editar/editar.component';
 import { MovimientoPlanillaComponent } from './movimiento-planilla/movimiento-planilla.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AuthGuard } from './auth.guard';
-import { CentroCostosComponent } from './centro-costos/centro-costos.component';  
+import { CentroCostosComponent } from './centro-costos/centro-costos.component';
+// Import the module from the SDK
+import { AuthModule } from '@auth0/auth0-angular';  
 
 
 @NgModule({
@@ -33,7 +35,15 @@ import { CentroCostosComponent } from './centro-costos/centro-costos.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    // Import the module into the application, with configuration
+    AuthModule.forRoot({
+      domain: 'dev-0giiekio4xgysadj.us.auth0.com',
+      clientId: 'vW93ZzH7weegQxsxzL6rpEnavYng17iH',
+      authorizationParams: {
+        redirect_uri: window.location.origin
+      }
+    }),
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
