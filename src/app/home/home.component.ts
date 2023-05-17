@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-home',
@@ -28,7 +29,7 @@ export class HomeComponent implements OnInit {
   mostrarMovimientosPlanilla: boolean = false;
   
 
-  constructor(private emisorService: EmisorService,private sanitizer: DomSanitizer, private http: HttpClient,private router: Router) {
+  constructor(public auth: AuthService,private emisorService: EmisorService,private sanitizer: DomSanitizer, private http: HttpClient,private router: Router) {
     this.logoUrl = this.sanitizer.bypassSecurityTrustUrl('assets/img/logo-taller.svg');  
     this.fechaActual = new Date().toLocaleDateString();
     const sesionGuardada = localStorage.getItem('sesionIniciada');
@@ -188,6 +189,7 @@ export class HomeComponent implements OnInit {
   }
 
   cerrarSesionAPP(){
+    this.auth.logout()
     this.sesionIniciada = false;
     this.emisorService.clearEmisorData();  
     localStorage.removeItem('sesionIniciada');
