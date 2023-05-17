@@ -1,0 +1,192 @@
+/* Reset de estilos */  
+* {  
+  margin: 0;  
+  padding: 0;  
+  box-sizing: border-box;  
+}  
+  
+/* Estilos de la página */  
+body {  
+  font-family: 'Roboto', sans-serif;  
+  background-color: #F5F5F5;  
+}  
+  
+.container {  
+  max-width: 500px;  
+  margin: 0 auto;  
+  padding: 50px 20px;  
+}  
+  
+.title {  
+  font-size: 2rem;  
+  font-weight: bold;  
+  text-align: center;  
+  margin-bottom: 30px;  
+  color: #333;  
+}  
+  
+.form {  
+  background-color: #fff;  
+  border-radius: 5px;  
+  padding: 30px;  
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);  
+
+}  
+  
+.form-group {  
+  margin-bottom: 20px;  
+}  
+  
+label {  
+  display: block;  
+  font-size: 1.2rem;  
+  font-weight: bold;  
+  margin-bottom: 10px;  
+  color: #333; 
+  font-family: 'Open Sans', sans-serif;  
+}  
+  
+.form-control {  
+  display: block;  
+  width: 100%;  
+  padding: 10px;  
+  font-size: 1rem;  
+  border: 1px solid #ccc;  
+  border-radius: 5px;  
+  transition: border-color 0.3s ease;  
+}  
+  
+.form-control:focus {  
+  outline: none;  
+  border-color: #c90e0e;  
+}  
+  
+
+.form-select:focus {  
+  outline: none;  
+  border-color: #c90e0e;  
+}  
+  
+.btn {  
+  display: block;  
+  padding: 10px 20px;  
+  font-size: 1.2rem;  
+  font-weight: bold;  
+  text-align: center;  
+  color: #fff;  
+  background-color: #c90e0e;  
+  border: none;  
+  border-radius: 5px;  
+  cursor: pointer;  
+  transition: background-color 0.3s ease;  
+  margin: 0 auto; 
+}  
+  
+.btn:hover {  
+  background-color: #57df4b;  
+}  
+  
+@media screen and (max-width: 576px) {  
+  .container {  
+    padding: 30px 10px;  
+  }  
+  
+  .title {  
+    font-size: 1.5rem;  
+    margin-bottom: 20px;  
+  }  
+  
+  .form {  
+    padding: 20px;  
+  }  
+  
+  label {  
+    font-size: 1rem;  
+    margin-bottom: 8px;  
+  }  
+  
+  .form-control {  
+    font-size: 0.9rem;  
+    padding: 8px;  
+  }  
+  
+  .btn {  
+    padding: 8px 16px;  
+    font-size: 1rem;  
+  }  
+}  
+
+/* Estilos de la página */  
+body {  
+  font-family: 'Open Sans', sans-serif;  
+  background-color: #F5F5F5;  
+}  
+
+
+.logo {  
+  display: inline-block;  
+  height: 6rem;  
+  margin-right: 10px;  
+  vertical-align: middle;  
+}  
+
+select {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0z"/><path d="M7 10l5 5 5-5z"/></svg>');  
+
+  background-repeat: no-repeat;
+  background-position-x: calc(100% - 1rem);
+  background-position-y: center;
+}
+
+.tooltip {  
+  position: relative;  
+  display: inline-block;  
+}  
+
+.tooltip .tooltiptext {  
+  visibility: hidden;  
+  width: 120px;  
+  background-color: #555;  
+  color: #fff;  
+  text-align: center;  
+  border-radius: 6px;  
+  padding: 5px 0;  
+  position: absolute;  
+  z-index: 1;  
+  bottom: 125%;  
+  left: 50%;  
+  margin-left: -60px;  
+  opacity: 0;  
+  transition: opacity 0.3s;  
+}  
+
+.tooltip .tooltiptext::after {  
+  content: "";  
+  position: absolute;  
+  top: 100%;  
+  left: 50%;  
+  margin-left: -5px;  
+  border-width: 5px;  
+  border-style: solid;  
+  border-color: #555 transparent transparent transparent;  
+}  
+
+.tooltip:hover .tooltiptext {  
+  visibility: visible;  
+  opacity: 1;  
+}  
+
+.tooltip .icon-help {  
+  width: 16px;  
+  height: 16px;  
+  margin-left: 5px;  
+}  
+

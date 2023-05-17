@@ -1,0 +1,40 @@
+/* Estilo para el contenedor principal */
+.input-group {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  /* Estilo para el botón de búsqueda */
+  .btn-outline-secondary {
+    border-radius: 0 4px 4px 0;
+  }
+  
+  /* Estilo para la tabla */
+  .table-container {
+    max-width: 800px;
+    margin: 20px auto;
+  }
+  
+  /* Estilo para las filas de la tabla */
+  tr {
+    cursor: pointer;
+  }
+  
+  /* Estilo para las filas cuando el cursor está sobre ellas */
+  tr:hover {
+    background-color: #f5f5f5;
+  }
+  
+  /* Estilo para las celdas de la tabla */
+  td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  /* Estilo para las celdas de la cabecera de la tabla */
+  th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    background-color: #f5f5f5;
+  }
+  

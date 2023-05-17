@@ -1,0 +1,175 @@
+
+
+.welcome-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  height: 100vh; /* Altura del contenedor */
+}
+
+.welcome-message {
+  text-align: center;
+}
+
+.welcome-message {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.welcome-message h1 {
+  font-size: 3em;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.welcome-message p {
+  font-size: 1.5em;
+  color: #777;
+}
+
+nav {
+  background-color: #333; /* Cambiar por el color que desees */
+  width: 100%;
+}
+
+nav ul {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  flex: 1;
+}
+
+nav a {
+  color: white;
+  display: block;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.logo {  
+  display: inline-block;  
+  height: 6rem;  
+  margin-right: 10px;  
+  vertical-align: middle;  
+}  
+
+.table-container {
+  margin: 20px; /* margen de 20px */
+}
+
+.form-box {
+  max-width: 600px; /* Establece un ancho máximo de 600px */
+  margin: 0 auto; /* Centra la caja horizontalmente */
+  background-color: #f5f5f5; /* Cambia el color de fondo */
+  padding: 20px; /* Añade un poco de espacio entre el borde y los elementos internos */
+  border-radius: 5px; /* Agrega esquinas redondeadas a la caja */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Agrega una sombra suave */
+}
+
+/* Estilos para los elementos internos */
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+input[type="number"],
+input[type="text"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #0069d9;
+}
+.input-group.mb-3 {
+  max-width: 300px !important;
+
+}
+.btn-primary {
+  margin-left: 10px;
+}
+
+.input-group {
+  margin-left: 10px;
+  
+}
+
+.navbar-text {
+  color: #000000 !important;
+}
+
+.ms-auto.text-dark {
+  margin-right: 0; /* Elimina el margen derecho */
+}
+
+.navbar-text {
+  margin-right: 10px; /* Ajusta el margen derecho entre los elementos */
+}
+
+.navbar-text h6,
+.navbar-text p {
+  margin-bottom: 0; /* Elimina el espacio inferior entre los elementos */
+}
+
+.navbar-collapse .navbar-nav .nav-item {
+  /* Estilos personalizados para los elementos <li> */
+  margin-bottom: 10px;
+}
+
+.navbar-collapse .navbar-nav .nav-item h6 {
+  /* Estilos personalizados para los elementos <h6> dentro de los <li> */
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: black;
+}
+
+.navbar-nav li {
+  margin-left: 155px; /* Ajusta el valor según tus necesidades */
+}
+@media (max-width: 992px) {
+.navbar-nav li {
+  margin-left: 20px; /* Elimina el margen izquierdo */
+}
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 240px;
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+}
+
+.content {
+  margin-left: 240px;
+  padding: 20px;
+}
+
+
+
+

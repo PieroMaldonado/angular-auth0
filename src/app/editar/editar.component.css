@@ -1,0 +1,37 @@
+/* Estilo para el contenedor principal */
+.input-group {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .form-label {
+    font-weight: bold;
+  }
+  
+  .form-control {
+    margin-bottom: 1rem;
+  }
+  
+  .btn-primary {
+    margin-top: 1rem;
+  }
+
+  .container {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      padding: 10px;
+    }
+  }
+  
