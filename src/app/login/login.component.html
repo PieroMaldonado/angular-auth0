@@ -52,7 +52,7 @@
               [selected]="emisor.NombreEmisor === emisores[0].NombreEmisor">{{ emisor }}</option>
           </select>
         </div>
-        <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+        <button type="button" (click)="login()" class="btn btn-primary">Iniciar Sesión</button>
       </form>
     </div>
   </div>

@@ -6,6 +6,8 @@ import { map } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';  
 import Swal from 'sweetalert2';  
 import { FormGroup, FormControl, Validators } from '@angular/forms';  
+// Import the AuthService type from the SDK
+import { AuthService } from '@auth0/auth0-angular';
 
 
 
@@ -39,7 +41,7 @@ export class LoginComponent  implements OnInit{
     password: 5    
   };    
      
-  constructor(private http: HttpClient,private sanitizer: DomSanitizer,private emisorService: EmisorService,private router: Router) {   
+  constructor(public auth: AuthService, private http: HttpClient,private sanitizer: DomSanitizer,private emisorService: EmisorService,private router: Router) {   
     this.selectedEmisor= '';  
     this.logoUrl = this.sanitizer.bypassSecurityTrustUrl('assets/img/logo-taller.svg');    
   }  
@@ -58,8 +60,11 @@ export class LoginComponent  implements OnInit{
   
   
   ngOnInit() {  
-  
-      
+    this.auth.isAuthenticated$.subscribe(isAuthenticated =>{
+      if(isAuthenticated){
+        this.router.navigate(['/home'])
+      }
+    })
     // this.http.get<any>('https://aspnetback.azurewebsites.net/api/ControladorAPI/api/v1/emisores')    
     this.http.get<any>('api/ControladorAPI/api/v1/emisores')    
         .subscribe((data: any[]) => {    
@@ -67,6 +72,9 @@ export class LoginComponent  implements OnInit{
         });      
   }  
   
+  login(){
+    this.auth.loginWithRedirect()
+  }
     
   onChangeEmisor(event: Event) {  
     const target = event.target as HTMLSelectElement;  
