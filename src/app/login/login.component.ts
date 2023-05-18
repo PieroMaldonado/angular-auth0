@@ -55,10 +55,7 @@ export class LoginComponent  implements OnInit{
       event.preventDefault();        
     }        
   }  
-  
-  
-  
-  
+
   ngOnInit() {  
     this.auth.isAuthenticated$.subscribe(isAuthenticated =>{
       if(isAuthenticated){

@@ -7,51 +7,6 @@
         <img [src]="logoUrl" alt="Logo de mi sitio web" class="logo">
       </h2>
       <form class="form" (ngSubmit)="onSubmit()">
-
-        <div class="form-group">  
-          <label for="username">Usuario</label>  
-          <div class="tooltip-container" style="display: flex; align-items: center;">  
-            <input type="text" class="form-control" id="username" [(ngModel)]="username" name="usuario"  
-              (keydown)="onlyNumbers($event, minLength.username)" minlength="{{ minLength.username }}">  
-            <span class="tooltip">  
-              <img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-information-512.png" alt="icono de información"  
-                class="icon-info" style="width: 20px;">   
-              <span class="tooltiptext">El usuario debe tener 4 caracteres númericos</span>  
-            </span>  
-          </div>  
-          <div *ngIf="username && username.length < minLength.username" class="text-danger">El usuario debe tener  
-            {{minLength.username}} caracteres</div>  
-        </div>  
-        
-
-        <div class="form-group">  
-          <label for="password">Contraseña</label>  
-          <div class="tooltip-container" style="display: flex; align-items: center;">  
-            <input type="password" class="form-control" id="password" [(ngModel)]="password" name="contrasena"  
-              minlength="{{ minLength.password }}" maxlength="5">  
-            <span class="tooltip">  
-              <img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-information-512.png" alt="icono de información"  
-                class="icon-info" style="width: 20px;">   
-              <span class="tooltiptext">La contraseña debe tener 5 carateres</span>  
-            </span>  
-          </div>  
-          <div *ngIf="password && password.length < minLength.password" class="text-danger">La contraseña debe tener  
-            {{minLength.password}} caracteres</div>  
-        </div>  
-        
-
-
-
-
-        <div class="form-group">
-          <label for="username">Emisor</label>
-          <br>
-          <select class="form-select" [(ngModel)]="selectedEmisor" name="emisorSelect"
-            (change)="onChangeEmisor($event)">
-            <option *ngFor="let emisor of emisores" [value]="emisor.NombreEmisor"
-              [selected]="emisor.NombreEmisor === emisores[0].NombreEmisor">{{ emisor }}</option>
-          </select>
-        </div>
         <button type="button" (click)="login()" class="btn btn-primary">Iniciar Sesión</button>
       </form>
     </div>
