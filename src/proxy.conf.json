@@ -3,7 +3,6 @@
     "target": "https://crudempresasapi.azurewebsites.net/",
     "secure": false,
     "logLevel": "debug",
-    "changeOrigin":true,
     "headers": {  
       "Access-Control-Allow-Origin": "https://angular-auth0.vercel.app/"  
     } 
