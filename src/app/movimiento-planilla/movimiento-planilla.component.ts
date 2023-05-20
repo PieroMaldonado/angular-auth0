@@ -528,10 +528,8 @@ export class MovimientoPlanillaComponent {
 
     searchMovimientoPlanilla() {
       const concepto = this.conceptoBusqueda;
-      const headers: any ={
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.token}`
-      };
+      const headers = this.setHeaders(this.token);
+
       this.http.get<any[]>(`https://crudempresasapi.azurewebsites.net/api/ControladorAPI/api/movimientoPlanilla/search?concepto=${concepto}`,{headers}).subscribe(
         (data) => {
           if (data && data.length > 0) {
@@ -574,6 +572,13 @@ export class MovimientoPlanillaComponent {
       if (!isNumber && !isAllowedKey) {
         event.preventDefault();
       }
+    }
+
+    setHeaders(token: string) {
+      return {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      };
     }
 
 }
