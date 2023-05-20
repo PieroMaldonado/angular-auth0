@@ -33,10 +33,7 @@ export class CentroCostosComponent {
       .set('page', this.currentPage.toString())
       .set('itemsPerPage', this.itemsPerPage.toString());
 
-    const headers: any ={
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.token}`
-    };
+    const headers = this.setHeaders(this.token);
     
     this.http.get<any[]>('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/api/v1/centrocostos', { params, headers }).subscribe(
       data => {
@@ -92,8 +89,9 @@ export class CentroCostosComponent {
   
   guardarNuevoCentroCostos(codigo: string, descripcion: string) {
     if (codigo && descripcion) {
+      const headers = this.setHeaders(this.token);
       const url = `https://crudempresasapi.azurewebsites.net/api/ControladorAPI/CentroCostosInsert?codigoCentroCostos=${codigo}&descripcionCentroCostos=${descripcion}`;
-      this.http.get(url).subscribe(
+      this.http.get(url,{headers}).subscribe(
         (response) => {
           console.log(response);
           Swal.fire({
@@ -173,8 +171,9 @@ export class CentroCostosComponent {
   }
 
   guardarCambiosCentroCostos(codigo: number, nombre: string): void {
+    const headers = this.setHeaders(this.token);
     const url = `https://crudempresasapi.azurewebsites.net/api/ControladorAPI/CentroCostosEdit?codigoCentroCostos=${codigo}&descripcionCentroCostos=${nombre}`;
-    this.http.get(url).subscribe(
+    this.http.get(url,{headers}).subscribe(
       (response) => {
         console.log(response);
         Swal.fire({
@@ -208,7 +207,8 @@ export class CentroCostosComponent {
       cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.http.get('api/ControladorAPI/api/centrocostos/delete', { params }).subscribe(
+        const headers = this.setHeaders(this.token);
+        this.http.get('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/api/ControladorAPI/api/centrocostos/delete', { params,headers }).subscribe(
           result => {
             console.log(result);
             Swal.fire('Se ha eliminado exitosamente').then(() => {
@@ -226,7 +226,8 @@ export class CentroCostosComponent {
 
   searchCentroCostos() {
     const descripcion = this.descripcionBusqueda;
-    this.http.get<any[]>(`https://crudempresasapi.azurewebsites.net/api/ControladorAPI/api/centrocostos/search?descripcioncentrocostos=${descripcion}`).subscribe(
+    const headers = this.setHeaders(this.token);
+    this.http.get<any[]>(`https://crudempresasapi.azurewebsites.net/api/ControladorAPI/api/centrocostos/search?descripcioncentrocostos=${descripcion}`,{headers}).subscribe(
       (data) => {
         if (data && data.length > 0) {
           this.centroCostos = data;
@@ -248,6 +249,13 @@ export class CentroCostosComponent {
   limpiarBusqueda() {
     this.descripcionBusqueda = '';
     this.centroCostos = this.datosTablaOriginal;
+  }
+
+  setHeaders(token: string) {
+    return {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    };
   }
 
 }

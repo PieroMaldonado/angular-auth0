@@ -39,7 +39,9 @@ export class MovimientoPlanillaComponent {
       console.log(error)
     }
 
-    this.http.get<any[]>('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/ObtenerMovimientosExcepcion1y2')
+    const headers = this.setHeaders(this.token);
+
+    this.http.get<any[]>('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/ObtenerMovimientosExcepcion1y2',{headers})
     .pipe(
       map(data => data.map(item => ({
         value: item.DesripMovimientoExce, // Usar DesripMovimientoExce como valor
@@ -56,7 +58,7 @@ export class MovimientoPlanillaComponent {
         }
       );
 
-      this.http.get<any[]>('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/ObtenerMovimientosExcepcion3')
+      this.http.get<any[]>('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/ObtenerMovimientosExcepcion3',{headers})
       .pipe(
         map(data => data.map(item => ({
           value: item.DesripMovimientoExce, // Usar DesripMovimientoExce como valor
@@ -72,7 +74,7 @@ export class MovimientoPlanillaComponent {
         }
       );
 
-      this.http.get<any[]>('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/GetTipoOperacion')
+      this.http.get<any[]>('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/GetTipoOperacion',{headers})
       .pipe(
         map(data => data.map(item => ({
           value: item.NombreOperacion, // Usar DesripMovimientoExce como valor
@@ -88,7 +90,7 @@ export class MovimientoPlanillaComponent {
           }
       );
 
-      this.http.get<any[]>('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/GetTrabaAfectaIESS')
+      this.http.get<any[]>('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/GetTrabaAfectaIESS',{headers})
       .pipe(
         map(data => data.map(item => ({
           value: item.DesripMovimientoExce, // Usar DesripMovimientoExce como valor
@@ -104,7 +106,7 @@ export class MovimientoPlanillaComponent {
           }
       );
 
-      this.http.get<any[]>('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/GetTrabAfecImpuestoRenta')
+      this.http.get<any[]>('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/GetTrabAfecImpuestoRenta',{headers})
       .pipe(
         map(data => data.map(item => ({
           value: item.DesripMovimientoExce, // Usar DesripMovimientoExce como valor
@@ -127,10 +129,7 @@ export class MovimientoPlanillaComponent {
       .set('page', this.currentPage.toString())
       .set('itemsPerPage', this.itemsPerPage.toString());
 
-    const headers: any ={
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.token}`
-    };
+    const headers = this.setHeaders(this.token);
   
     this.http.get<any[]>('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/api/GetMovimientosPlanilla', { params, headers }).subscribe(
       data => {
@@ -315,9 +314,10 @@ export class MovimientoPlanillaComponent {
       concepto && prioridad && tipoOperacion && cuenta1 && cuenta2 && cuenta3 && cuenta4 && movimientoExcepcion1 &&
       movimientoExcepcion2 && movimientoExcepcion3 && trabajaAplicaIess && trabajaProyectoImpRenta && aplicaProyRenta && empresaAfectaIess
     ) {
+      const headers = this.setHeaders(this.token);
       const url = `https://crudempresasapi.azurewebsites.net/api/ControladorAPI/MovimientoPlanillaInsert?conceptos=${encodeURIComponent(concepto)}&prioridad=${encodeURIComponent(prioridad)}&tipoOperacion=${encodeURIComponent(tipoOperacion)}&cuenta1=${encodeURIComponent(cuenta1)}&cuenta2=${encodeURIComponent(cuenta2)}&cuenta3=${encodeURIComponent(cuenta3)}&cuenta4=${encodeURIComponent(cuenta4)}&movimientoExcepcion1=${encodeURIComponent(movimientoExcepcion1)}&movimientoExcepcion2=${encodeURIComponent(movimientoExcepcion2)}&movimientoExcepcion3=${encodeURIComponent(movimientoExcepcion3)}&Traba_Aplica_iess=${encodeURIComponent(trabajaAplicaIess)}&Traba_Proyecto_imp_renta=${encodeURIComponent(trabajaProyectoImpRenta)}&Aplica_Proy_Renta=${encodeURIComponent(aplicaProyRenta)}&Empresa_Afecta_Iess=${encodeURIComponent(empresaAfectaIess)}`;
   
-      this.http.get(url).subscribe(
+      this.http.get(url,{headers}).subscribe(
         () => {
           Swal.fire('Éxito', 'El movimiento de planilla se ha creado correctamente', 'success');
           this.fetchMovimientosPlanilla();
@@ -472,9 +472,10 @@ export class MovimientoPlanillaComponent {
     guardarCambiosMovimientoPlanilla(codigoPlanilla: number, conceptos: string, prioridad: number, tipooperacion: string
       ,cuenta1: number,cuenta2: number,cuenta3: number,cuenta4: number, MovimientoExcepcion1: string,MovimientoExcepcion2: string,MovimientoExcepcion3: string,Traba_Aplica_iess: number,Traba_Proyecto_imp_renta: number
       ,Aplica_Proy_Renta: number,Empresa_Afecta_Iess: number): void {
+      const headers = this.setHeaders(this.token);
       const url = `https://crudempresasapi.azurewebsites.net/api/ControladorAPI/api/movimientoPlanilla/edit?codigoplanilla=${codigoPlanilla}&conceptos=${conceptos}&prioridad=${prioridad}&tipooperacion=${tipooperacion}&cuenta1=${cuenta1}&cuenta2=${cuenta2}&cuenta3=${cuenta3}&cuenta4=${cuenta4}
       &MovimientoExcepcion1=${MovimientoExcepcion1}&MovimientoExcepcion2=${MovimientoExcepcion2}&MovimientoExcepcion3=${MovimientoExcepcion3}&Traba_Aplica_iess=${Traba_Aplica_iess}&Traba_Proyecto_imp_renta=${Traba_Proyecto_imp_renta}&Aplica_Proy_Renta=${Aplica_Proy_Renta}&Empresa_Afecta_Iess=${Empresa_Afecta_Iess}`;
-      this.http.get(url).subscribe(
+      this.http.get(url,{headers}).subscribe(
         (response) => {
           console.log(response);
           Swal.fire({
@@ -509,7 +510,8 @@ export class MovimientoPlanillaComponent {
         cancelButtonText: 'Cancelar'
       }).then((result) => {
         if (result.isConfirmed) {
-          this.http.get('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/api/movimientoPlanilla/delete', { params }).subscribe(
+          const headers = this.setHeaders(this.token);
+          this.http.get('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/api/movimientoPlanilla/delete', { params,headers }).subscribe(
             result => {
               // console.log(result);
               Swal.fire('Se ha eliminado exitosamente').then(() => {
