@@ -208,7 +208,7 @@ export class CentroCostosComponent {
     }).then((result) => {
       if (result.isConfirmed) {
         const headers = this.setHeaders(this.token);
-        this.http.get('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/api/ControladorAPI/api/centrocostos/delete', { params,headers }).subscribe(
+        this.http.get('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/api/centrocostos/delete', { params,headers }).subscribe(
           result => {
             console.log(result);
             Swal.fire('Se ha eliminado exitosamente').then(() => {

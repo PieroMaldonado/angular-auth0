@@ -35,11 +35,7 @@ export class MovimientoPlanillaComponent {
     this.auth.getAccessTokenSilently().subscribe((value)=>{
       this.token = value
       this.fetchMovimientosPlanilla();
-    }),(error: any) =>{
-      console.log(error)
-    }
-
-    const headers = this.setHeaders(this.token);
+      const headers = this.setHeaders(this.token);
 
     this.http.get<any[]>('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/ObtenerMovimientosExcepcion1y2',{headers})
     .pipe(
@@ -121,7 +117,9 @@ export class MovimientoPlanillaComponent {
             console.log(error);
           }
       );
-
+    }),(error: any) =>{
+      console.log(error)
+    }
   }
 
   fetchMovimientosPlanilla(): void {
