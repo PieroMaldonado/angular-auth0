@@ -25,16 +25,16 @@ export class LoginComponent  implements OnInit{
   emisorComp: any;   
   logoUrl:any;  
 
-  // httpOptions = {  
-  //   headers: new HttpHeaders({  
-  //     'Content-Type': 'application/json',  
-  //     'Access-Control-Allow-Origin': 'https://login-proyecto-angular-master-2.vercel.app',  
-  //     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',  
-  //     'Access-Control-Allow-Headers': 'X-Requested-With,content-type',  
-  //     'Access-Control-Allow-Credentials': 'true',  
-  //     'Access-Control-Allow-Policy': 'AllowSpecificOrigin'  
-  //   })  
-  // };  
+  httpOptions = {  
+    headers: new HttpHeaders({  
+      'Content-Type': 'application/json',  
+      'Access-Control-Allow-Origin': 'https://angular-auth0.vercel.app/',  
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',  
+      'Access-Control-Allow-Headers': 'X-Requested-With,content-type',  
+      'Access-Control-Allow-Credentials': 'true',  
+      'Access-Control-Allow-Policy': 'AllowSpecificOrigin'  
+    })  
+  };  
   
   minLength = {    
     username: 4,    
@@ -62,12 +62,14 @@ export class LoginComponent  implements OnInit{
         this.router.navigate(['/home'])
       }
     })
+
     // this.http.get<any>('https://aspnetback.azurewebsites.net/api/ControladorAPI/api/v1/emisores')    
     this.http.get<any>('api/ControladorAPI/api/v1/emisores')    
         .subscribe((data: any[]) => {    
-          this.emisores = data.map(emisor => emisor.NombreEmisor);    
+          this.emisores = data.map(emisor => emisor.NombreEmisor);   
         });      
   }  
+
   
   login(){
     this.auth.loginWithRedirect()

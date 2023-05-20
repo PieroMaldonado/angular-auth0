@@ -41,8 +41,9 @@ import { AuthModule } from '@auth0/auth0-angular';
       domain: 'dev-0giiekio4xgysadj.us.auth0.com',
       clientId: 'vW93ZzH7weegQxsxzL6rpEnavYng17iH',
       authorizationParams: {
-        redirect_uri: window.location.origin
-      }
+        redirect_uri: window.location.origin,
+        audience: 'https://crudempresasapi.azurewebsites.net/',
+      },
     }),
   ],
   providers: [AuthGuard],

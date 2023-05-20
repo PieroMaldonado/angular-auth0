@@ -1,20 +1,11 @@
-// {  
-//   "/*": {  
-//     "target": "https://aspnetback.azurewebsites.net/",  
-//     "secure": false,  
-//     "logLevel": "debug",
-//     "changeOrigin":true
-//     "headers": {  
-//       "Access-Control-Allow-Origin": "https://login-proyecto-angular-master-2.vercel.app"  
-//     }  
-//   }  
-// }  
 {
-  "/api/*": {
-    "target": "https://localhost:7019",
+  "/*": {
+    "target": "https://crudempresasapi.azurewebsites.net/",
     "secure": false,
     "logLevel": "debug",
-    "changeOrigin":true
-    
+    "changeOrigin":true,
+    "headers": {  
+      "Access-Control-Allow-Origin": "https://angular-auth0.vercel.app/"  
+    } 
   }
 }

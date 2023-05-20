@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-centro-costos',
@@ -14,19 +15,30 @@ export class CentroCostosComponent {
   centroCostosBusqueda: any[] = [];
   currentPage = 1;
   itemsPerPage = 10;
+  token: string = ''
 
-  constructor(private http: HttpClient) {} // Inyecta HttpClient en el constructor
+  constructor(public auth: AuthService, private http: HttpClient) {} // Inyecta HttpClient en el constructor
 
   ngOnInit(): void {
-    this.fetchCentroCostos()
+    this.auth.getAccessTokenSilently().subscribe((value)=>{
+      this.token = value
+      this.fetchCentroCostos()
+    }),(error: any) =>{
+      console.log(error)
+    }
   }
 
   fetchCentroCostos(): void {
     const params = new HttpParams()
       .set('page', this.currentPage.toString())
       .set('itemsPerPage', this.itemsPerPage.toString());
-  
-    this.http.get<any[]>('api/ControladorAPI/api/v1/centrocostos', { params }).subscribe(
+
+    const headers: any ={
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.token}`
+    };
+    
+    this.http.get<any[]>('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/api/v1/centrocostos', { params, headers }).subscribe(
       data => {
         this.centroCostos = data;
         this.datosTablaOriginal = data;
