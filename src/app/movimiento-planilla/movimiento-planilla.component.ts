@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http'
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { AuthService } from '@auth0/auth0-angular';
 
 
 @Component({
@@ -26,11 +27,17 @@ export class MovimientoPlanillaComponent {
   movimientosPlanillaBusqueda: any[] = [];
   conceptoBusqueda: string = '';
   datosTablaOriginal: any[] = [];
+  token: string = ''
 
-  constructor(private http: HttpClient) {} // Inyecta HttpClient en el constructor
+  constructor(public auth: AuthService, private http: HttpClient) {} // Inyecta HttpClient en el constructor
 
   ngOnInit(): void {
-    this.fetchMovimientosPlanilla();
+    this.auth.getAccessTokenSilently().subscribe((value)=>{
+      this.token = value
+      this.fetchMovimientosPlanilla();
+    }),(error: any) =>{
+      console.log(error)
+    }
 
     this.http.get<any[]>('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/ObtenerMovimientosExcepcion1y2')
     .pipe(
@@ -119,8 +126,13 @@ export class MovimientoPlanillaComponent {
     const params = new HttpParams()
       .set('page', this.currentPage.toString())
       .set('itemsPerPage', this.itemsPerPage.toString());
+
+    const headers: any ={
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.token}`
+    };
   
-    this.http.get<any[]>('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/api/GetMovimientosPlanilla', { params }).subscribe(
+    this.http.get<any[]>('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/api/GetMovimientosPlanilla', { params, headers }).subscribe(
       data => {
         this.movimientosPlanilla = data;
         this.datosTablaOriginal = data;
@@ -516,7 +528,11 @@ export class MovimientoPlanillaComponent {
 
     searchMovimientoPlanilla() {
       const concepto = this.conceptoBusqueda;
-      this.http.get<any[]>(`https://crudempresasapi.azurewebsites.net/api/ControladorAPI/api/movimientoPlanilla/search?concepto=${concepto}`).subscribe(
+      const headers: any ={
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.token}`
+      };
+      this.http.get<any[]>(`https://crudempresasapi.azurewebsites.net/api/ControladorAPI/api/movimientoPlanilla/search?concepto=${concepto}`,{headers}).subscribe(
         (data) => {
           if (data && data.length > 0) {
             this.movimientosPlanilla = data;
