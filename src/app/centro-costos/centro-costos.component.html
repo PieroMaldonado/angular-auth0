@@ -22,7 +22,7 @@
           <tr>
             <th>Código</th>
             <th>Nombre Centro de Costos</th>
-            <th>Acciones</th> <!-- Nueva columna para los botones -->
+            <th *ngIf="rol.includes('admin')">Acciones</th> <!-- Nueva columna para los botones -->
           </tr>
         </thead>
         <tbody>

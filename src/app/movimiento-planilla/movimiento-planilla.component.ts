@@ -28,12 +28,14 @@ export class MovimientoPlanillaComponent {
   conceptoBusqueda: string = '';
   datosTablaOriginal: any[] = [];
   token: string = ''
+  rol: string[] = [];
 
   constructor(public auth: AuthService, private http: HttpClient) {} // Inyecta HttpClient en el constructor
 
   ngOnInit(): void {
     this.auth.getAccessTokenSilently().subscribe((value)=>{
       this.token = value
+      this.obtenerRolToken();
       this.fetchMovimientosPlanilla();
       const headers = this.setHeaders(this.token);
 
@@ -120,6 +122,14 @@ export class MovimientoPlanillaComponent {
     }),(error: any) =>{
       console.log(error)
     }
+  }
+
+  obtenerRolToken() {
+    this.auth.idTokenClaims$.subscribe((claims) => {
+      if (claims) {
+        this.rol = claims['rol'];
+      }
+    });
   }
 
   fetchMovimientosPlanilla(): void {

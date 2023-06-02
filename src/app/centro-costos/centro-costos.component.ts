@@ -37,7 +37,6 @@ export class CentroCostosComponent {
     this.auth.idTokenClaims$.subscribe((claims) => {
       if (claims) {
         this.rol = claims['rol'];
-        this.fetchCentroCostos();
       }
     });
   }

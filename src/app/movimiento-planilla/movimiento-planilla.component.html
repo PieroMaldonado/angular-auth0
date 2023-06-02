@@ -8,7 +8,7 @@
 </div>
 
 <br>
-<button class="btn btn-primary mb-3" (click)="nuevoMovimientoPlanilla()">Crear nuevo Movimiento</button>
+<button class="btn btn-primary mb-3" *ngIf="rol.includes('admin')" (click)="nuevoMovimientoPlanilla()">Crear nuevo Movimiento</button>
 
 <div class="table-container">
   <table class="table table-hover">
@@ -29,7 +29,7 @@
         <th>Aplica Imp Renta</th>
         <th>Empresa Afecta IESS</th>
         <th>Mensaje</th>
-        <th>Acciones</th> 
+        <th *ngIf="rol.includes('admin')">Acciones</th> 
       </tr>
     </thead>
     <tbody>
@@ -50,8 +50,8 @@
         <td>{{ movimiento.Empresa_Afecta_Iess }}</td>
         <td>{{ movimiento.Mensaje }}</td>
         <td>
-          <button class="btn btn-sm btn-primary me-2" (click)="editarMovimientoPlanilla(movimiento.CodigoConcepto)">Editar</button>
-          <button class="btn btn-sm btn-danger" (click)="eliminarMovimientoPlanilla(movimiento.CodigoConcepto, movimiento.Concepto)">Eliminar</button>
+          <button class="btn btn-sm btn-primary me-2" *ngIf="rol.includes('admin')" (click)="editarMovimientoPlanilla(movimiento.CodigoConcepto)">Editar</button>
+          <button class="btn btn-sm btn-danger" *ngIf="rol.includes('admin')" (click)="eliminarMovimientoPlanilla(movimiento.CodigoConcepto, movimiento.Concepto)">Eliminar</button>
         </td>
       </tr>
       
