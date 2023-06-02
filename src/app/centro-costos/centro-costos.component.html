@@ -12,7 +12,7 @@
     </div>
 
     <br>
-    <button class="btn btn-primary mb-3" (click)="nuevoCentroCostos()">Crear nuevo Centro de Costos</button>
+    <button class="btn btn-primary mb-3" *ngIf="rol.includes('admin')" (click)="nuevoCentroCostos()">Crear nuevo Centro de Costos</button>
   
     <br>
     <div class="table-container">
@@ -30,8 +30,8 @@
             <td>{{ cc.Codigo }}</td>
             <td>{{ cc.NombreCentroCostos }}</td>
             <td>
-              <button class="btn btn-sm btn-primary me-2" (click)="editarCentroCostos(cc.Codigo)">Editar</button>
-              <button class="btn btn-sm btn-danger" (click)="eliminarCentroCostos(cc.Codigo, cc.NombreCentroCostos)">Eliminar</button>
+              <button class="btn btn-sm btn-primary me-2" *ngIf="rol.includes('admin')" (click)="editarCentroCostos(cc.Codigo)">Editar</button>
+              <button class="btn btn-sm btn-danger" *ngIf="rol.includes('admin')" (click)="eliminarCentroCostos(cc.Codigo, cc.NombreCentroCostos)">Eliminar</button>
             </td>
           </tr>
         </tbody>

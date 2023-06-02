@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular
 import Swal from 'sweetalert2';
 import { AuthService } from '@auth0/auth0-angular';
 
+
 @Component({
   selector: 'app-centro-costos',
   templateUrl: './centro-costos.component.html',
@@ -16,16 +17,29 @@ export class CentroCostosComponent {
   currentPage = 1;
   itemsPerPage = 10;
   token: string = ''
+  rol: string[] = [];
 
   constructor(public auth: AuthService, private http: HttpClient) {} // Inyecta HttpClient en el constructor
 
   ngOnInit(): void {
     this.auth.getAccessTokenSilently().subscribe((value)=>{
       this.token = value
+      this.obtenerRolToken();
       this.fetchCentroCostos()
+      
     }),(error: any) =>{
       console.log(error)
     }
+    
+  }
+
+  obtenerRolToken() {
+    this.auth.idTokenClaims$.subscribe((claims) => {
+      if (claims) {
+        this.rol = claims['rol'];
+        this.fetchCentroCostos();
+      }
+    });
   }
 
   fetchCentroCostos(): void {
