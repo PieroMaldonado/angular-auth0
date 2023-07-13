@@ -22,17 +22,15 @@ export class CentroCostosComponent {
   constructor(public auth: AuthService, private http: HttpClient) {} // Inyecta HttpClient en el constructor
 
   ngOnInit(): void {
-    this.auth.getAccessTokenSilently().subscribe((value)=>{
-      this.token = value
+    this.auth.getAccessTokenSilently().subscribe((value) => {
+      this.token = value;
       this.obtenerRolToken();
-      this.fetchCentroCostos()
-      
-    }),(error: any) =>{
-      console.log(error)
-    }
-    
+      this.fetchCentroCostos();
+    }, (error: any) => {
+      console.log(error);
+    });
   }
-
+  
   obtenerRolToken() {
     this.auth.idTokenClaims$.subscribe((claims) => {
       if (claims) {

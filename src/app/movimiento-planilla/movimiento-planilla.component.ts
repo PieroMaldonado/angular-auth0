@@ -33,96 +33,97 @@ export class MovimientoPlanillaComponent {
   constructor(public auth: AuthService, private http: HttpClient) {} // Inyecta HttpClient en el constructor
 
   ngOnInit(): void {
-    this.auth.getAccessTokenSilently().subscribe((value)=>{
-      this.token = value
+    this.auth.getAccessTokenSilently().subscribe((value) => {
+      this.token = value;
       this.obtenerRolToken();
       this.fetchMovimientosPlanilla();
       const headers = this.setHeaders(this.token);
-
-    this.http.get<any[]>('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/ObtenerMovimientosExcepcion1y2',{headers})
-    .pipe(
-      map(data => data.map(item => ({
-        value: item.DesripMovimientoExce, // Usar DesripMovimientoExce como valor
-        label: item.CodigoMovimientoExce // Mostrar CodigoMovimientoExce en la interfaz
-      })))
-    )
-    .subscribe(
-      data => {
-        this.movimientoExcepcion1Options = data;
-        this.movimientoExcepcion2Options = data;
-      },
-        error => {
-          console.log(error);
-        }
-      );
-
-      this.http.get<any[]>('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/ObtenerMovimientosExcepcion3',{headers})
-      .pipe(
-        map(data => data.map(item => ({
-          value: item.DesripMovimientoExce, // Usar DesripMovimientoExce como valor
-          label: item.CodigoMovimientoExce // Mostrar CodigoMovimientoExce en la interfaz
-        })))
-      )
-      .subscribe(
-        data => {
-          this.movimientoExcepcion3Options = data;
-        },
-        error => {
-          console.log(error);
-        }
-      );
-
-      this.http.get<any[]>('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/GetTipoOperacion',{headers})
-      .pipe(
-        map(data => data.map(item => ({
-          value: item.NombreOperacion, // Usar DesripMovimientoExce como valor
-          label: item.CodigoTipooperacion // Mostrar CodigoMovimientoExce en la interfaz
-        })))
-      )
-      .subscribe(
-        data => {
-          this.tipoOperacionOptions = data;
-        },
+  
+      this.http.get<any[]>('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/ObtenerMovimientosExcepcion1y2', { headers })
+        .pipe(
+          map(data => data.map(item => ({
+            value: item.DesripMovimientoExce,
+            label: item.CodigoMovimientoExce
+          })))
+        )
+        .subscribe(
+          data => {
+            this.movimientoExcepcion1Options = data;
+            this.movimientoExcepcion2Options = data;
+          },
           error => {
             console.log(error);
           }
-      );
-
-      this.http.get<any[]>('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/GetTrabaAfectaIESS',{headers})
-      .pipe(
-        map(data => data.map(item => ({
-          value: item.DesripMovimientoExce, // Usar DesripMovimientoExce como valor
-          label: item.CodigoMovimientoExce // Mostrar CodigoMovimientoExce en la interfaz
-        })))
-      )
-      .subscribe(
-        data => {
-          this.trabaAfectaIESSOptions = data;
-        },
+        );
+  
+      this.http.get<any[]>('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/ObtenerMovimientosExcepcion3', { headers })
+        .pipe(
+          map(data => data.map(item => ({
+            value: item.DesripMovimientoExce,
+            label: item.CodigoMovimientoExce
+          })))
+        )
+        .subscribe(
+          data => {
+            this.movimientoExcepcion3Options = data;
+          },
           error => {
             console.log(error);
           }
-      );
-
-      this.http.get<any[]>('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/GetTrabAfecImpuestoRenta',{headers})
-      .pipe(
-        map(data => data.map(item => ({
-          value: item.DesripMovimientoExce, // Usar DesripMovimientoExce como valor
-          label: item.CodigoMovimientoExce // Mostrar CodigoMovimientoExce en la interfaz
-        })))
-      )
-      .subscribe(
-        data => {
-          this.trabAfecImpuestoRentaOptions = data;
-        },
+        );
+  
+      this.http.get<any[]>('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/GetTipoOperacion', { headers })
+        .pipe(
+          map(data => data.map(item => ({
+            value: item.NombreOperacion,
+            label: item.CodigoTipooperacion
+          })))
+        )
+        .subscribe(
+          data => {
+            this.tipoOperacionOptions = data;
+          },
           error => {
             console.log(error);
           }
-      );
-    }),(error: any) =>{
-      console.log(error)
-    }
+        );
+  
+      this.http.get<any[]>('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/GetTrabaAfectaIESS', { headers })
+        .pipe(
+          map(data => data.map(item => ({
+            value: item.DesripMovimientoExce,
+            label: item.CodigoMovimientoExce
+          })))
+        )
+        .subscribe(
+          data => {
+            this.trabaAfectaIESSOptions = data;
+          },
+          error => {
+            console.log(error);
+          }
+        );
+  
+      this.http.get<any[]>('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/GetTrabAfecImpuestoRenta', { headers })
+        .pipe(
+          map(data => data.map(item => ({
+            value: item.DesripMovimientoExce,
+            label: item.CodigoMovimientoExce
+          })))
+        )
+        .subscribe(
+          data => {
+            this.trabAfecImpuestoRentaOptions = data;
+          },
+          error => {
+            console.log(error);
+          }
+        );
+    }, (error: any) => {
+      console.log(error);
+    });
   }
+  
 
   obtenerRolToken() {
     this.auth.idTokenClaims$.subscribe((claims) => {
