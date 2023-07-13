@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EmisorService } from '../shared/emisor.service';
 import { DomSanitizer } from '@angular/platform-browser';  
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
 import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
@@ -66,12 +65,12 @@ export class HomeComponent implements OnInit {
   
   onlyNumbers(event: KeyboardEvent): void {
     const input = event.key;
-    const isNumber = /^[0-9]+$/.test(input);
+    const isNumber = /^\d+$/.test(input);
     const isAllowedKey = event.code === 'Backspace' || event.code === 'Delete' || event.code === 'Tab';
   
     if (!isNumber && !isAllowedKey) {
       event.preventDefault();
     }
-  }
+  }  
   
 }

@@ -9,10 +9,6 @@
 
 .welcome-message {
   text-align: center;
-}
-
-.welcome-message {
-  text-align: center;
   margin-top: 100px;
 }
 
@@ -118,14 +114,11 @@ button[type="submit"]:hover {
 
 .navbar-text {
   color: #000000 !important;
+  margin-right: 10px; /* Ajusta el margen derecho entre los elementos */
 }
 
 .ms-auto.text-dark {
   margin-right: 0; /* Elimina el margen derecho */
-}
-
-.navbar-text {
-  margin-right: 10px; /* Ajusta el margen derecho entre los elementos */
 }
 
 .navbar-text h6,

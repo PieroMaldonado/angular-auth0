@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { AuthService } from '@auth0/auth0-angular';
 
@@ -313,7 +312,7 @@ export class MovimientoPlanillaComponent {
       }
     });
   }
-  
+
   guardarNuevoMovimientoPlanilla(
     concepto: string, prioridad: string, tipoOperacion: string, cuenta1: string, cuenta2: string, cuenta3: string, cuenta4: string,
     movimientoExcepcion1: string, movimientoExcepcion2: string, movimientoExcepcion3: string,
@@ -340,7 +339,7 @@ export class MovimientoPlanillaComponent {
       Swal.fire('Error', 'Todos los campos son requeridos', 'error');
     }
   }
-
+  
   validarExcepciones1y2(movimientoExcepcionCodigo: string) {
     const excepciones = [
       { CodigoMovimientoExce: "Si Movimiento Planilla", DesripMovimientoExce: "M" },
@@ -522,7 +521,6 @@ export class MovimientoPlanillaComponent {
           const headers = this.setHeaders(this.token);
           this.http.get('https://crudempresasapi.azurewebsites.net/api/ControladorAPI/api/movimientoPlanilla/delete', { params,headers }).subscribe(
             result => {
-              // console.log(result);
               Swal.fire('Se ha eliminado exitosamente').then(() => {
                 // Realizar acciones adicionales después de eliminar
                 this.fetchMovimientosPlanilla()
@@ -577,7 +575,7 @@ export class MovimientoPlanillaComponent {
     
     onlyNumbers(event: KeyboardEvent): void {
       const input = event.key;
-      const isNumber = /^[0-9]+$/.test(input);
+      const isNumber = /^\d+$/.test(input);
       const isAllowedKey = event.code === 'Backspace' || event.code === 'Delete' || event.code === 'Tab';
     
       if (!isNumber && !isAllowedKey) {

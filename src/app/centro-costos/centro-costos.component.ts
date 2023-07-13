@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { AuthService } from '@auth0/auth0-angular';
 
@@ -168,13 +168,13 @@ export class CentroCostosComponent {
   
   onlyNumbers(event: KeyboardEvent): void {
     const input = event.key;
-    const isNumber = /^[0-9]+$/.test(input);
+    const isNumber = /^\d+$/.test(input);
     const isAllowedKey = event.code === 'Backspace' || event.code === 'Delete' || event.code === 'Tab';
   
     if (!isNumber && !isAllowedKey) {
       event.preventDefault();
     }
-  }
+  }  
 
   getDescripcionCentroCostos(codigo: number): string {
     // Aquí haces una llamada al API para obtener el nombre del centro de costos con este código

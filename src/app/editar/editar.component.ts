@@ -1,10 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { EmisorService } from '../shared/emisor.service';
-import { DomSanitizer } from '@angular/platform-browser';  
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-editar',
@@ -29,7 +26,6 @@ export class EditarComponent {
   guardarCambios(): void {
     const url = `/api/ControladorAPI/CentroCostosEdit?codigoCentroCostos=${this.codigo}&descripcionCentroCostos=${this.nombreCentroCostos}`;
     
-    const body = { codigoCentroCostos: this.codigo, descripcionCentroCostos: this.nombreCentroCostos };
     this.http.get(url).subscribe(
       (response) => {
         console.log(response);

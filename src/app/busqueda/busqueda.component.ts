@@ -1,10 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { EmisorService } from '../shared/emisor.service';
 import { DomSanitizer } from '@angular/platform-browser';  
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-//import { HomeComponent } from '../home/home.component';
 
 @Component({
   selector: 'app-busqueda',
@@ -47,8 +46,5 @@ export class BusquedaComponent {
 
   }
 
-  /*eliminarCentroCostos(codigo: number, descripcion: string) {
-    this.homeComponent.eliminarCentroCostos(codigo, descripcion); // Llamar a la función de HomeComponent
-  }*/
   
 }

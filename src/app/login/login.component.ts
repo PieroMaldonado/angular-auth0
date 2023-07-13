@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { EmisorService } from '../shared/emisor.service';  
 import { HttpClient, HttpHeaders } from '@angular/common/http';  
 import { Router } from '@angular/router';  
-import { map } from 'rxjs';  
 import { DomSanitizer } from '@angular/platform-browser';  
 import Swal from 'sweetalert2';  
-import { FormGroup, FormControl, Validators } from '@angular/forms';  
 // Import the AuthService type from the SDK
 import { AuthService } from '@auth0/auth0-angular';
 
@@ -49,7 +47,7 @@ export class LoginComponent  implements OnInit{
   onlyNumbers(event: KeyboardEvent, maxLength: number) {        
     const isAllowedKey = event.code === 'Backspace' || event.code === 'Delete' || event.code === 'Tab';        
     const isMaxLengthReached = (event.target as HTMLInputElement).value.length >= maxLength;      
-    const isNumberKey = /^[0-9]+$/.test(event.key); // Agrega esta línea para validar si la tecla presionada es un número  
+    const isNumberKey = /^\d+$/.test(event.key); // Utiliza la sintaxis \d para verificar si la tecla presionada es un número
     
     if (!isAllowedKey && (!isNumberKey || isMaxLengthReached)) { // Actualiza esta línea para verificar si la tecla no es permitida o si se alcanzó la longitud máxima  
       event.preventDefault();        

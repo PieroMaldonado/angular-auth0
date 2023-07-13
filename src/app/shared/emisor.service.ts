@@ -6,8 +6,6 @@ import { Injectable } from '@angular/core';
 export class EmisorService {
   private emisorData = {nombre: '', ruc: ''};
 
-  constructor() { }
-
   updateEmisorData(data: any) {
     this.emisorData = data;
     localStorage.setItem('emisorData', JSON.stringify(data));

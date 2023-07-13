@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { Observable, catchError, tap, throwError } from 'rxjs';
 
 
 @Component({
@@ -28,10 +27,8 @@ export class InsertarComponent {
 
 
   onSubmit() {
-    //const url = 'api/ControladorAPI/CentroCostosInsert';
     const url = `https://aspnetback.azurewebsites.net/api/ControladorAPI/CentroCostosInsert?codigoCentroCostos=${this.codigo}&descripcionCentroCostos=${this.descripcion}`;
     
-    const body = { codigoCentroCostos: this.codigo, descripcionCentroCostos: this.descripcion };
     this.http.get(url).subscribe(
       (response) => {
         console.log(response);
