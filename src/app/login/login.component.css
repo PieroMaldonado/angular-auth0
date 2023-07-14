@@ -116,13 +116,6 @@ label {
   }  
 }  
 
-/* Estilos de la página */  
-body {  
-  font-family: 'Open Sans', sans-serif;  
-  background-color: #F5F5F5;  
-}  
-
-
 .logo {  
   display: inline-block;  
   height: 6rem;  
